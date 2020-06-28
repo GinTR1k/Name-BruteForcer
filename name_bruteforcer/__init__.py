@@ -40,8 +40,17 @@ class NameBruteForcer:
             assert isinstance(custom_mapping, dict)
             self.custom_mapping = custom_mapping
 
-    def brute_force_name(self, name: str) -> Set[str]:
-        """BruteForce only first or last name"""
+    def run(self, name: str) -> Set[str]:
+        """BruteForce name"""
+        names = name.split()
+        if len(names) == 1:
+            return self._name(name)
+        if len(names) == 2:
+            return self._fullname(name)
+        else:
+            raise ValueError('You should pass first, last or fullname')
+
+    def _name(self, name: str) -> Set[str]:
         results = set()
         translate_variants = {ord(a): ord(b) for a, b in zip(*self.dictionary)}
         results.add(name.translate(translate_variants))
@@ -58,19 +67,19 @@ class NameBruteForcer:
                 for mapping_variant in self.custom_mapping[substring]:
                     new_name = name[:j] + mapping_variant + name[i + 1:]
                     results.add(new_name.translate(translate_variants))
-                    results.update(self.brute_force_name(new_name))
+                    results.update(self._name(new_name))
 
         return results
 
-    def brute_force_fullname(self, fullname: str) -> Set[str]:
+    def _fullname(self, fullname: str) -> Set[str]:
         """Brute force fullname (first name and last name)"""
         assert 1 <= len(fullname.split()) <= 2, (
             'You should pass first name and/or last name in str')
 
         first_name, last_name = fullname.split()
         names: dict = {
-            first_name: self.brute_force_name(first_name),
-            last_name: self.brute_force_name(last_name)
+            first_name: self._name(first_name),
+            last_name: self._name(last_name)
         }
         results = set()
         for first_name_variant in names[first_name]:
