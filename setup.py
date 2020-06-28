@@ -19,7 +19,7 @@ with open('README.md', 'r') as f:
     long_description = f.read()
 
 setup(
-    name='name_bruteforcer',
+    name='transliteration_brute_forcer',
     version='0.0.1',
     description='',
     long_description=long_description,
@@ -27,7 +27,7 @@ setup(
     classifiers=classifiers,
     author='Alexander Karateev',
     author_email='administrator@gintr1k.space',
-    url='https://github.com/GinTR1k/Name-BruteForcer',
+    url='https://github.com/GinTR1k/Transliteration-BruteForcer',
     license='MIT',
     packages=find_packages(exclude=['tests']),
     include_package_data=True,

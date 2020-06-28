@@ -1,7 +1,10 @@
 from typing import Set, Dict, List, Union, Tuple
 
 
-class NameBruteForcer:
+__all__ = 'TransliterationBruteForcer'
+
+
+class TransliterationBruteForcer:
     dictionary = (
         u'абвгдеёжзийклмнопрстуфхцчшщъыьэюяАБВГДЕЁЖЗИЙКЛМНОПРСТУФХЦЧШЩЪЫЬЭЮЯ',
         u'abvgdeejzijklmnoprstufhzcss_y_euaABVGDEEJZIJKLMNOPRSTUFHZCSS_Y_EUA'
